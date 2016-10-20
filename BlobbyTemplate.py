@@ -95,6 +95,21 @@ def findColorSpot(picture, color):
 # 4-YELLOW
 
 ######################Code Starts Here##################################
+color=input("What color blob should I find?")
+if color=="blue":
+    color=3
+if color=="red":
+    color=1
+if color=="green":
+    color=2
+if color=="yellow":
+    color=4
+else:
+    wait(1)
+    color=input("Please input a different color. What color blob should I find?")
+angle=randrange(-90,90)
+turnBy(angle)
+pic=takePicture()
 
 
 
