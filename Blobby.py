@@ -41,6 +41,13 @@ poly.color = Color("yellow")
 poly.outline = Color("black")
 sim.addShape(poly)
 
+#purple spot
+poly = Circle((250, 450), 45)
+poly.bodyType = "static"
+poly.color = Color("Purple")
+poly.outline = Color("black")
+sim.addShape(poly)
+
 #begin simulation and sets robot's position
 makeRobot("SimScribbler", sim)
 sim.setPose(0, width/2, height/2, 0)
@@ -73,8 +80,7 @@ def findColorSpot(picture, color):
         elif(color == 3 and getRed(pixel) < 50 and getGreen(pixel) < 50  and getBlue(pixel) > 150):
             xPixelSum += getX(pixel)
             totalPixelNum += 1
-        elif(color == 4 and getRed(pixel) > 200 and getGreen(pixel) > 150 and getBlue(pixel) < 50):
-            
+        elif(color == 4 and getRed(pixel) > 200 and getGreen(pixel) > 150 and getBlue(pixel) < 50): 
             xPixelSum += getX(pixel)
             totalPixelNum += 1
     if(totalPixelNum != 0):
@@ -95,21 +101,60 @@ def findColorSpot(picture, color):
 # 4-YELLOW
 
 ######################Code Starts Here##################################
-color=input("What color blob should I find?")
-if color=="blue":
-    color=3
-if color=="red":
-    color=1
-if color=="green":
-    color=2
-if color=="yellow":
-    color=4
-else:
-    wait(1)
-    color=input("Please input a different color. What color blob should I find?")
-angle=randrange(-90,90)
-turnBy(angle)
-pic=takePicture()
+NotherBlob = 1
+import sys
+while True:
+    while NotherBlob == 1:
+        color=input("What color blob should I find?")
+        if color=="blue":
+            color=int(3)
+        if color=="red":
+            color=int(1)
+        if color=="green":
+            color=int(2)
+        if color=="yellow":
+            color=int(4)
+        toTheRight=randrange(-20,-5)
+        toTheLeft=randrange(5,20)
+        turnBy(randrange(-90,90))
+        def check():
+            pic=takePicture()
+            x=findColorSpot(pic,color)
+            return x
+        x=check()
+        while x > -1:
+            while 0 <= x < 96 or x > 160:
+                if x==0:
+                    turnBy(randrange(-90,-20))
+                    x=check()
+                elif x < 96:
+                    turnBy(toTheLeft)
+                    x=check()
+                elif x > 160:
+                    turnBy(toTheRight)
+                    x=check()
+            while 96 <= x <= 160:
+                forward (1,1)
+                x=check()
+        if x == -1:
+            print("I have found the blob! Blobby is a free elf!")
+            NotherBlob = 0
+            Blob=input("Shall I find another one? [Y/N]")
+            if Blob=="yes" or "Y":
+                backward(2,2)
+                NotherBlob = 1
+                continue
+            if Blob=="no" or "N":
+                NotherBlob = 0
+                sys.exit()
+            
+             
+            
+       
+        
+    
+    
+    
 
 
 
