@@ -55,6 +55,20 @@ poly.color = Color("pink")
 poly.outline = Color("black")
 sim.addShape(poly)
 
+#white spot
+poly = Circle((50, 250), 45)
+poly.bodyType = "static"
+poly.color = Color("white")
+poly.outline = Color("black")
+sim.addShape(poly)
+
+#orange spot
+poly = Circle((450, 250), 45)
+poly.bodyType = "static"
+poly.color = Color("orange")
+poly.outline = Color("black")
+sim.addShape(poly)
+
 #begin simulation and sets robot's position
 makeRobot("SimScribbler", sim)
 sim.setPose(0, width/2, height/2, 0)
@@ -81,7 +95,7 @@ def findColorSpot(picture, color):
         if(color == 1 and getRed(pixel) > 150 and getGreen(pixel) < 50 and getBlue(pixel) < 50):
             xPixelSum += getX(pixel)
             totalPixelNum += 1
-        elif(color == 2 and getRed(pixel) < 50 and getGreen(pixel) > 100 and getBlue(pixel) < 50):
+        elif(color == 2 and getRed(pixel) < 50 and getGreen(pixel) > 80 and getBlue(pixel) < 50):
             xPixelSum += getX(pixel)
             totalPixelNum += 1
         elif(color == 3 and getRed(pixel) < 50 and getGreen(pixel) < 50  and getBlue(pixel) > 150):
@@ -94,6 +108,12 @@ def findColorSpot(picture, color):
             xPixelSum += getX(pixel)
             totalPixelNum += 1
         elif(color == 6 and getRed(pixel) > 200 and getGreen(pixel) > 100 and getBlue(pixel) > 150): 
+            xPixelSum += getX(pixel)
+            totalPixelNum += 1
+        elif(color == 7 and 270 > getRed(pixel) > 200 and 270> getGreen(pixel) > 200 and getBlue(pixel) > 200): 
+            xPixelSum += getX(pixel)
+            totalPixelNum += 1
+        elif(color == 8 and 250 > getRed(pixel) > 200 and 170 > getGreen(pixel) > 100 and getBlue(pixel) < 50): 
             xPixelSum += getX(pixel)
             totalPixelNum += 1
     if(totalPixelNum != 0):
@@ -130,6 +150,10 @@ while True:
         color=int(5)
     if color=="pink":
         color=int(6)
+    if color=="white":
+        color=int(7)
+    if color=="orange":
+        color=int(8)
     toTheRight=randrange(-20,-5)
     toTheLeft=randrange(5,20)
     turnBy(randrange(-30,90))
@@ -157,7 +181,7 @@ while True:
         NotherBlob = 0
         Blob=input("Shall I find another one? [Y/N]")
         if Blob=="Y":
-            backward(1,2)
+            backward(1.5,2)
             continue
         if Blob== "N":
             NotherBlob = 0
