@@ -101,7 +101,7 @@ def findColorSpot(picture, color):
         elif(color == 3 and getRed(pixel) < 50 and getGreen(pixel) < 50  and getBlue(pixel) > 150):
             xPixelSum += getX(pixel)
             totalPixelNum += 1
-        elif(color == 4 and getRed(pixel) > 200 and getGreen(pixel) > 150 and getBlue(pixel) < 50): 
+        elif(color == 4 and 246 > getRed(pixel) > 200 and getGreen(pixel) > 150 and getBlue(pixel) == 0): 
             xPixelSum += getX(pixel)
             totalPixelNum += 1
         elif(color == 5 and getRed(pixel) > 100 and getGreen(pixel) < 50 and getBlue(pixel) > 100): 
@@ -134,10 +134,12 @@ def findColorSpot(picture, color):
 # 4-YELLOW
 
 ######################Code Starts Here##################################
+# Make sure to drag the picture window up so that you can see what Scribby has to say in the output!
 NotherBlob = 1
 import sys
 while True:
     color=input("What color blob should I find?")
+    y=color
     if color=="blue":
         color=int(3)
     if color=="red":
@@ -177,7 +179,7 @@ while True:
             forward (1,1)
             x=check()
     if x == -1:
-        print("I have found the blob! Blobby is a free elf!")
+        print("I have found the " + y + " blob! Blobby is a free elf!")
         NotherBlob = 0
         Blob=input("Shall I find another one? [Y/N]")
         if Blob=="Y":
