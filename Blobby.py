@@ -107,7 +107,7 @@ def findColorSpot(picture, color):
         elif(color == 5 and getRed(pixel) > 100 and getGreen(pixel) < 50 and getBlue(pixel) > 100): 
             xPixelSum += getX(pixel)
             totalPixelNum += 1
-        elif(color == 6 and getRed(pixel) > 200 and getGreen(pixel) > 100 and getBlue(pixel) > 150): 
+        elif(color == 6 and getRed(pixel) > 200 and 210 > getGreen(pixel) > 150 and 220 > getBlue(pixel) > 160): 
             xPixelSum += getX(pixel)
             totalPixelNum += 1
         elif(color == 7 and 270 > getRed(pixel) > 200 and 270> getGreen(pixel) > 200 and getBlue(pixel) > 200): 
