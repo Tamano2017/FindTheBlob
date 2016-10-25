@@ -101,7 +101,7 @@ def findColorSpot(picture, color):
         elif(color == 3 and getRed(pixel) < 50 and getGreen(pixel) < 50  and getBlue(pixel) > 150):
             xPixelSum += getX(pixel)
             totalPixelNum += 1
-        elif(color == 4 and 246 > getRed(pixel) > 200 and getGreen(pixel) > 150 and getBlue(pixel) == 0): 
+        elif(color == 4 and 254 > getRed(pixel) > 200 and 254> getGreen(pixel) > 200 and getBlue(pixel) == 0): 
             xPixelSum += getX(pixel)
             totalPixelNum += 1
         elif(color == 5 and getRed(pixel) > 100 and getGreen(pixel) < 50 and getBlue(pixel) > 100): 
@@ -156,8 +156,8 @@ while True:
         color=int(7)
     if color=="orange":
         color=int(8)
-    toTheRight=randrange(-20,-5)
-    toTheLeft=randrange(5,20)
+    toTheRight=randrange(-15,-5)
+    toTheLeft=randrange(5,15)
     turnBy(randrange(-30,90))
     def check():
         pic=takePicture()
